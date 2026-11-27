@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join on Nextone</title>
+<style>
+  :root{color-scheme:dark}
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(160deg,#0d0a1f,#2a2352 60%,#3a5bd9);font-family:system-ui,sans-serif;color:#f4f2ff;text-align:center}
+  .card{width:min(92vw,420px);padding:28px 22px;border-radius:28px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+  img{width:88px;height:88px;border-radius:24px}
+  h1{margin:14px 0 6px;font-size:26px}
+  p{color:#bdb6dd;line-height:1.45}
+  .code{font:800 30px monospace;letter-spacing:4px;background:rgba(0,0,0,.3);border-radius:14px;padding:12px;margin:14px 0}
+  a.btn{display:block;margin:10px 0;padding:14px;border-radius:14px;text-decoration:none;font-weight:700}
+  .open{background:linear-gradient(135deg,#8b5cff,#3fa9ff);color:#fff}
+  .dl{background:rgba(255,255,255,.12);color:#fff}
+</style>
+</head>
+<body>
+<div class="card">
+  <img src="icon.png" alt="Nextone" onerror="this.style.display='none'">
+  <h1>You're invited to Nextone</h1>
+  <p>Tap the button to open the app and join the server.</p>
+  <div class="code" id="code">...</div>
+  <a class="btn open" id="open" href="#">Open in Nextone</a>
+  <a class="btn dl" href="https://github.com/retwobehruz/nextone/releases/download/latest/Nextone.apk">Don't have the app? Download</a>
+  <p style="font-size:13px">Or open Nextone, tap + and choose "Join with code".</p>
+</div>
+<script>
+  var c = (new URLSearchParams(location.search).get('c') || '').trim();
+  document.getElementById('code').textContent = c || '—';
+  var link = 'nextone://join/' + encodeURIComponent(c);
+  document.getElementById('open').href = link;
+  if (c) setTimeout(function(){ location.href = link; }, 400);
+</script>
+</body>
+</html>
